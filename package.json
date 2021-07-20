@@ -15,7 +15,8 @@
     "@nuxtjs/composition-api": "^0.24.7",
     "core-js": "^3.15.1",
     "json-server": "^0.16.3",
-    "nuxt": "^2.15.7"
+    "nuxt": "^2.15.7",
+    "vuex-module-decorators": "^1.0.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",
