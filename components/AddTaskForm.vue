@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext, ref } from '@vue/composition-api'
+import { defineComponent, SetupContext, ref } from '@nuxtjs/composition-api'
 import Task from '@/types/task'
 
 export default defineComponent({
