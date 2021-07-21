@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AddTaskForm v-if="isShowAddTaskForm" @add-task="addTask" />
+    <AddTaskForm v-if="isShowAddFormRef" @add-task="addTask" />
 
     <Tasks
       v-if="tasksRef"
@@ -12,26 +12,23 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
-import Task from '@/types/task'
-import useList from '../composables/use-list'
+import { defineComponent, Ref } from '@nuxtjs/composition-api'
+import Task from '~/types/task'
+import { taskStore, showAddFormStore } from '~/utils/store-accessor'
 
 export default defineComponent({
-  props: {
-    isShowAddTaskForm: Boolean,
-  },
-
   setup() {
-    const tasksRef = ref<Task[]>()
-    const { load, addTask, deleteTask, toggleDone } = useList(tasksRef)
+    const tasksRef: Ref<Task[]> = taskStore.tasksRef
+    const isShowAddFormRef: Ref<boolean> = showAddFormStore.isShowAddFormRef
 
-    load()
+    taskStore.load()
 
     return {
       tasksRef,
-      addTask,
-      deleteTask,
-      toggleDone,
+      addTask: taskStore.addTask,
+      deleteTask: taskStore.deleteTask,
+      toggleDone: taskStore.toggleDone,
+      isShowAddFormRef,
     }
   },
 })

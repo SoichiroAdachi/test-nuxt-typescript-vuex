@@ -1,31 +1,16 @@
 <template>
   <div class="container">
-    <Header
-      title="Task Stacker"
-      :toggle-show-button="isShowAddTaskForm"
-      @toggle-add-task-form="toggleShowAddTaskForm"
-    />
+    <Header title="Task Stacker" />
 
-    <Home :is-show-add-task-form="isShowAddTaskForm" />
+    <Home />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
+import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
-  setup() {
-    const isShowAddTaskForm = ref<boolean>(false)
-
-    const toggleShowAddTaskForm = () => {
-      isShowAddTaskForm.value = !isShowAddTaskForm.value
-    }
-
-    return {
-      isShowAddTaskForm,
-      toggleShowAddTaskForm,
-    }
-  },
+  setup() {},
 })
 </script>
 
