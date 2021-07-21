@@ -3,18 +3,19 @@
     <h1>{{ title }}</h1>
 
     <Button
-      v-if="toggleShowButton"
-      text="Close"
-      color="red"
-      @btn-click="handleClick"
+      v-if="!isShowAddFormRef"
+      text="Add Task"
+      color="green"
+      @btn-click="toggleShowAddForm"
     />
 
-    <Button v-else text="Add Task" color="green" @btn-click="handleClick" />
+    <Button v-else text="Close" color="red" @btn-click="toggleShowAddForm" />
   </header>
 </template>
 
 <script lang="ts">
-import { defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent, Ref } from '@nuxtjs/composition-api'
+import { showAddFormStore } from '~/utils/store-accessor'
 
 export default defineComponent({
   props: {
@@ -22,18 +23,14 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    toggleShowButton: Boolean,
   },
 
-  emits: ['toggle-add-task-form'],
-
-  setup(_, context: SetupContext) {
-    const handleClick = () => {
-      context.emit('toggle-add-task-form')
-    }
+  setup() {
+    const isShowAddFormRef: Ref<boolean> = showAddFormStore.isShowAddFormRef
 
     return {
-      handleClick,
+      isShowAddFormRef,
+      toggleShowAddForm: showAddFormStore.toggle,
     }
   },
 })
